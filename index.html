@@ -493,6 +493,27 @@ chart=new Chart(document.getElementById("chart"),{
     }
   }
 });
+pieChart = new Chart(document.getElementById("pieChart"),{
+  type:"doughnut",
+  data:{
+    labels:["Completed","Missed","Delayed"],
+    datasets:[{
+      data:[0,0,0],
+      backgroundColor:["#7BC96F","#FF2D2D","#EFD256"],
+      borderWidth:0
+    }]
+  },
+  options:{
+    responsive:true,
+    cutout:"45%",
+    plugins:{
+      legend:{
+        display:false
+      }
+    }
+  }
+});
+
 }
 
 function updateChart(){
@@ -542,7 +563,9 @@ opt.value=m;
 opt.textContent=m;
 select.appendChild(opt);
 });
-let [year, month] = select.value.split("-");
+
+select.onchange=()=>{
+  let [year, month] = select.value.split("-");
 
 const monthNames = [
   "January","February","March","April","May","June",
@@ -551,7 +574,6 @@ const monthNames = [
 
 document.getElementById("monthlyTitle").textContent =
 `${monthNames[parseInt(month)-1]} ${year}`;
-select.onchange=()=>{
 let data=[0,0,0];
 let statusText = "";
 months[select.value].forEach(t=>{
@@ -575,6 +597,9 @@ document.getElementById("monthlyStatus").textContent = statusText;
 pieChart.data.datasets[0].data=data;
 pieChart.update();
 };
+  if(select.value){
+  select.onchange();
+}
 }
 
 /* FILTER */
