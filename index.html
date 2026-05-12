@@ -195,6 +195,39 @@ textarea{
 }
 body.light .chart-section{background:#e0e0e0;}
 .chart-container{height:250px;}
+.pie-chart-container{
+  .report-layout{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:70px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+
+.report-left{
+  max-width:420px;
+}
+
+.report-right{
+  min-width:320px;
+}
+
+.report-right h1{
+  font-family:'Fredoka';
+  font-size:64px;
+  margin-bottom:20px;
+}
+
+#reportStats{
+  font-size:30px;
+  line-height:1.6;
+}
+  width:380px;
+  height:380px;
+  margin:20px auto;
+  position:relative;
+}
 #advancedTextToggle:hover{
   opacity:1;
   text-decoration:underline;
@@ -304,26 +337,42 @@ body.light #textSizeSlider{
 <!-- REPORT PAGE -->
 <div id="reportsPage" class="page">
 
-<h2 id="monthlyTitle"></h2>
+<div class="report-layout">
 
-<div id="monthlyStatus" style="
-  margin-bottom:15px;
-  opacity:0.85;
-  font-size:15px;
-"></div>
+  <div class="report-left">
 
-<select id="monthSelect" style="
-  width:100%;
-  padding:12px;
-  margin:10px 0;
-"></select>
+    <h2 id="monthlyTitle"></h2>
 
-<canvas id="pieChart"></canvas>
+    <div id="monthlyStatus" style="
+      margin-bottom:15px;
+      opacity:0.85;
+      font-size:15px;
+    "></div>
 
-<div style="margin-top:10px;">
-<span style="color:limegreen;">● Completed</span>
-<span style="color:red;">● Missed</span>
-<span style="color:gold;">● Late</span>
+    <select id="monthSelect" style="
+      width:100%;
+      padding:12px;
+      margin:10px 0;
+    "></select>
+
+    <div class="pie-chart-container">
+      <canvas id="pieChart"></canvas>
+    </div>
+
+    <div style="margin-top:10px;">
+      <span style="color:limegreen;">● Completed</span>
+      <span style="color:red;">● Missed</span>
+      <span style="color:gold;">● Late</span>
+    </div>
+
+  </div>
+
+  <div class="report-right">
+    <h1>Monthly Report:</h1>
+
+    <div id="reportStats"></div>
+  </div>
+
 </div>
 </div>
 
@@ -503,10 +552,11 @@ pieChart = new Chart(document.getElementById("pieChart"),{
       borderWidth:0
     }]
   },
-  options:{
-    responsive:true,
-    cutout:"45%",
-    plugins:{
+options:{
+  responsive:true,
+  maintainAspectRatio:false,
+  cutout:"45%",
+  plugins:{
       legend:{
         display:false
       }
@@ -599,6 +649,11 @@ pieChart.data.datasets[0].data=data;
 pieChart.update();
   pieChart.data.datasets[0].data = data;
   pieChart.update();
+  document.getElementById("reportStats").innerHTML = `
+Tasks Completed - ${data[0]}<br>
+Tasks Missed - ${data[1]}<br>
+Tasks Delayed - ${data[2]}
+`;
 
   if (select.value) {
     select.onchange();
