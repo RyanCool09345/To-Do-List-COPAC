@@ -10,7 +10,22 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
+
+*{
+  box-sizing:border-box;
+}
+
 body{
+  font-family:'Montserrat';
+  background:#0f0f0f;
+  color:white;
+  margin:0;
+  overflow-x:hidden;
+  transition:0.3s;
+
+  /* 🔥 TEXT SIZE SYSTEM */
+  --text-size:16px;
+}
   font-family:'Montserrat';
   background:#0f0f0f;
   color:white;
@@ -207,28 +222,32 @@ body.light .chart-section{background:#e0e0e0;}
   display:flex;
   justify-content:center;
   align-items:flex-start;
-  gap:70px;
+  gap:30px;
   flex-wrap:wrap;
   margin-top:30px;
+  width:100%;
+  overflow-x:hidden;
 }
 
 .report-left{
-  width:420px;
-  flex-shrink:0;
+  flex:1 1 320px;
+  max-width:420px;
+  min-width:0;
 }
 
 .report-right{
-  min-width:320px;
+  flex:1 1 260px;
+  min-width:0;
 }
 
 .report-right h1{
   font-family:'Fredoka';
-  font-size:64px;
+  font-size:clamp(36px, 8vw, 64px);
   margin-bottom:20px;
 }
 
 #reportStats{
-  font-size:30px;
+  font-size:clamp(20px, 5vw, 30px);
   line-height:1.6;
 }
 #advancedTextToggle:hover{
