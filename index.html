@@ -48,6 +48,7 @@ h1{text-align:center;font-family:'Fredoka';}
   transform:translateY(0);
   pointer-events:auto;
   position:relative;
+  overflow-x:hidden;
 }
 
 /* INPUT */
@@ -196,8 +197,8 @@ textarea{
 body.light .chart-section{background:#e0e0e0;}
 .chart-container{height:250px;}
 .pie-chart-container{
-  width:380px;
-  height:380px;
+  width:320px;
+  height:320px;
   margin:20px auto;
   position:relative;
 }
@@ -205,14 +206,15 @@ body.light .chart-section{background:#e0e0e0;}
 .report-layout{
   display:flex;
   justify-content:center;
-  align-items:center;
+  align-items:flex-start;
   gap:70px;
   flex-wrap:wrap;
   margin-top:30px;
 }
 
 .report-left{
-  max-width:420px;
+  width:420px;
+  flex-shrink:0;
 }
 
 .report-right{
