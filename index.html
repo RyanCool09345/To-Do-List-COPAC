@@ -26,15 +26,6 @@ body{
   /* 🔥 TEXT SIZE SYSTEM */
   --text-size:16px;
 }
-  font-family:'Montserrat';
-  background:#0f0f0f;
-  color:white;
-  margin:0;
-  transition:0.3s;
-
-  /* 🔥 TEXT SIZE SYSTEM */
-  --text-size:16px;
-}
 body.light{background:#f9f9f9;color:#000;}
 
 .container{max-width:1100px;margin:auto;padding:15px;}
@@ -771,7 +762,14 @@ function render(){
 let sections=document.getElementById("sections");
 sections.innerHTML="";
 
-let filtered=tasks; 
+let filtered = getFilteredTasks();
+
+let from = document.getElementById("fromDate").value;
+let to = document.getElementById("toDate").value;
+
+if(!from && !to){
+  filtered = tasks;
+}
 let groups={high:[],medium:[],low:[]};
 
 filtered.forEach(t=>groups[t.priority].push({...t,index:tasks.indexOf(t)}));
