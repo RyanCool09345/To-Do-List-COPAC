@@ -717,12 +717,7 @@ function renderFilterPreview(){
     return;
   }
 
-  let filtered = getFilteredTasks();
-
-if(!filtered.length){
-  container.innerHTML = "<div style='opacity:0.6'>No tasks found</div>";
-  return;
-}
+  let filtered = tasks;
 
   filtered.forEach(t=>{
   let realTask = tasks.find(task => task.createdAt === t.createdAt);
