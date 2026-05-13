@@ -983,8 +983,9 @@ try {
 applyLang();
 applyTextSize();
 render();
-document.getElementById("fromDate").addEventListener("input", renderFilterPreview);
-document.getElementById("toDate").addEventListener("input", renderFilterPreview);
+["fromDate","toDate"].forEach(id=>{
+  document.getElementById(id).addEventListener("input", render);
+});
 
 document.getElementById("textSizeSelect").value = textSize;
 
