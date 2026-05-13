@@ -717,7 +717,7 @@ function renderFilterPreview(){
     return;
   }
 
-  let filtered = tasks;
+  let filtered = getFilteredTasks();
 
   filtered.forEach(t=>{
   let realTask = tasks.find(task => task.createdAt === t.createdAt);
@@ -760,12 +760,7 @@ sections.innerHTML="";
 
 let filtered = getFilteredTasks();
 
-let from = document.getElementById("fromDate").value;
-let to = document.getElementById("toDate").value;
-
-if(!from && !to){
-  filtered = tasks;
-}
+let filtered = tasks;
 let groups={high:[],medium:[],low:[]};
 
 filtered.forEach(t=>groups[t.priority].push({...t,index:tasks.indexOf(t)}));
