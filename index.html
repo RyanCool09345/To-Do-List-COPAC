@@ -146,7 +146,7 @@ body.light li{
   border:1px solid #ddd;
 }
 
-/* Completed after deadline — "delayed" */
+/* Past due or finished after deadline — red "delayed" card */
 li.delayed{
   border:2px solid #ff4444;
   box-shadow:0 0 14px rgba(255,68,68,0.22);
@@ -1075,9 +1075,11 @@ let ul=section.querySelector("ul");
 list.forEach(t=>{
 let li=document.createElement("li");
 if(t.done) li.classList.add("done");
-if(t.done&&t.deadline&&t.completedAt&&new Date(t.completedAt)>new Date(t.deadline)){
-  li.classList.add("delayed");
-}
+const now=new Date();
+const dl=t.deadline?new Date(t.deadline):null;
+const finishedLate=t.done&&t.deadline&&t.completedAt&&new Date(t.completedAt)>new Date(t.deadline);
+const overdueIncomplete=!t.done&&t.deadline&&dl&&dl<now;
+if(finishedLate||overdueIncomplete) li.classList.add("delayed");
 
 li.innerHTML=`
 <div class="task-top">
