@@ -8,13 +8,13 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka&family=Montserrat&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+ 
 <style>
-
+ 
 *{
   box-sizing:border-box;
 }
-
+ 
 body{
   font-family:'Montserrat';
   background:#0f0f0f;
@@ -22,15 +22,15 @@ body{
   margin:0;
   overflow-x:hidden;
   transition:0.3s;
-
+ 
   /* 🔥 TEXT SIZE SYSTEM */
   --text-size:16px;
 }
 body.light{background:#f9f9f9;color:#000;}
-
+ 
 .container{max-width:1100px;margin:auto;padding:15px;}
 h1{text-align:center;font-family:'Fredoka';}
-
+ 
 /* NAV */
 .top-nav{display:flex;gap:10px;margin:15px 0;}
 .top-nav button{
@@ -39,7 +39,7 @@ h1{text-align:center;font-family:'Fredoka';}
   transition:0.25s;
 }
 .top-nav button:hover{transform:scale(1.05);}
-
+ 
 /* PAGE ANIMATION */
 .page{
   opacity:0;
@@ -56,7 +56,7 @@ h1{text-align:center;font-family:'Fredoka';}
   position:relative;
   overflow-x:hidden;
 }
-
+ 
 /* INPUT */
 .input-group{display:flex;flex-direction:column;gap:10px;}
 input,select,textarea,button{
@@ -66,7 +66,7 @@ input,select,textarea,button{
   font-size:calc(var(--text-size) - 1px);
 }
 #addTaskBtn{background:#4CAF50;color:white;}
-
+ 
 /* FILTER */
 .filter-section{
   margin-top:15px;
@@ -82,7 +82,7 @@ body.light .filter-section{background:#e0e0e0;}
 }
 .filter-row{display:flex;gap:10px;}
 .filter-row input{flex:1;}
-
+ 
 /* SECTIONS */
 .sections{
   display:grid;
@@ -96,9 +96,9 @@ body.light .filter-section{background:#e0e0e0;}
   background:#1a1a1a;
   border-radius:16px;
   padding:10px;
-
+ 
   max-height:65vh;
-
+ 
   overflow-y:auto;
   overflow-x:hidden;
 }
@@ -106,11 +106,11 @@ body.light .section{
   background:#ffffff;
   box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
-
+ 
 .section.high{border-top:4px solid red;}
 .section.medium{border-top:4px solid gold;}
 .section.low{border-top:4px solid limegreen;}
-
+ 
 .section-header{
   display:flex;
   justify-content:space-between;
@@ -119,16 +119,16 @@ body.light .section{
   font-family:'Fredoka';
   font-size:calc(var(--text-size) + 2px);
 }
-
+ 
 /* DROPDOWN FIX */
 .section-content{
   display:none;
 }
-
+ 
 .section.open .section-content{
   display:block;
 }
-
+ 
 /* TASK */
 ul{padding:0;}
 li{
@@ -143,24 +143,24 @@ body.light li{
   background:#ffffff;
   border:1px solid #ddd;
 }
-
+ 
 @keyframes fadeIn{
   from{opacity:0;transform:translateY(6px);}
   to{opacity:1;transform:translateY(0);}
 }
-
+ 
 li.done textarea{
   text-decoration:line-through;
   opacity:0.6;
 }
-
+ 
 .task-top{
   display:flex;
   gap:10px;
   align-items:flex-start;
   width:100%;
 }
-
+ 
 .task-top textarea{
   min-width:0;
 }
@@ -168,16 +168,16 @@ textarea{
   flex:1;
   font-size:var(--text-size);
 }
-
+ 
 .task-bottom{
   display:flex;
   gap:8px;
   margin-top:6px;
   width:100%;
-
+ 
   overflow:hidden;
 }
-
+ 
 .task-bottom input,
 .task-bottom select{
   flex:1;
@@ -194,21 +194,21 @@ textarea{
   resize:vertical;
   overflow-x:hidden;
 }
-
+ 
 .delete-btn{
   background:red;
   width:40px;height:40px;
   display:flex;align-items:center;justify-content:center;
   border-radius:10px;
 }
-
+ 
 .date-text{
   font-size:calc(var(--text-size) - 3px);
   margin-top:5px;
   opacity:0.8;
   text-decoration:none !important;
 }
-
+ 
 /* CHART */
 .chart-section{
   margin-top:15px;
@@ -224,13 +224,13 @@ textarea{
   flex-direction:column;
   gap:20px;
 }
-
+ 
 .setting-group{
   display:flex;
   flex-direction:column;
   gap:6px;
 }
-
+ 
 #settingsPage select{
   width:100%;
   margin-top:6px;
@@ -243,7 +243,7 @@ body.light .chart-section{background:#e0e0e0;}
   margin:20px auto;
   position:relative;
 }
-
+ 
 .report-layout{
   display:flex;
   align-items:flex-start;
@@ -252,35 +252,35 @@ body.light .chart-section{background:#e0e0e0;}
   width:100%;
   overflow-x:hidden;
 }
-
+ 
 .report-left{
   flex:1 1 320px;
   max-width:420px;
   min-width:0;
 }
-
+ 
 .report-right{
   flex:1;
   min-width:0;
-
+ 
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
-
+ 
   padding-top:0;
 }
-
+ 
 .report-right h1{
   font-family:'Fredoka';
   font-size:clamp(36px, 8vw, 64px);
   margin-top:0;
   margin-bottom:20px;
 }
-
+ 
 #reportStats{
   font-size:clamp(20px, 5vw, 30px);
   line-height:1.6;
-
+ 
   margin-top:-20px;
 }
 #advancedTextToggle:hover{
@@ -291,7 +291,7 @@ body.light .chart-section{background:#e0e0e0;}
   color:white;
   margin-top:8px;
 }
-
+ 
 body.light #advancedTextToggle{
   color:black;
 }
@@ -304,7 +304,7 @@ body.light #advancedTextToggle{
   padding:10px;
   border-radius:12px;
 }
-
+ 
 body.light #advancedTextPanel{
   background:#ffffff;
   border:1px solid #ccc;
@@ -314,7 +314,7 @@ body.light #advancedTextPanel{
   width:100%;
   accent-color:#4FC3F7; /* blue like your buttons */
 }
-
+ 
 body.light #textSizeSlider{
   accent-color:#4FC3F7;
 }
@@ -334,121 +334,121 @@ body.light #textSizeSlider{
   }
 }
   @media(max-width:600px){
-
+ 
   .task-bottom{
     flex-direction:column;
   }
-
+ 
   .task-bottom select,
   .task-bottom input{
     width:100%;
     max-width:100%;
   }
-
+ 
 }
 </style>
 </head>
-
+ 
 <body>
-
+ 
 <div class="container">
-
+ 
 <h1 id="title"></h1>
-
+ 
 <div class="top-nav">
 <button id="navTasks"></button>
 <button id="navReports"></button>
 <button id="navSettings"></button>
 </div>
-
+ 
 <!-- TASK PAGE -->
 <div id="tasksPage" class="page active">
-
+ 
 <div class="input-group">
 <input id="taskInput">
 <input id="deadlineInput" type="date">
 <select id="priorityInput"></select>
 <button id="addTaskBtn"></button>
 </div>
-
+ 
 <div class="filter-section">
 <div class="filter-title" id="filterTitle"></div>
-
+ 
 <div class="filter-row">
 <input type="date" id="fromDate">
 <input type="date" id="toDate">
 </div>
-
+ 
 <!-- 🔥 NEW FILTER RESULTS -->
 <div id="filterResults" style="margin-top:10px;"></div>
-
+ 
 </div>
-
+ 
 <div class="sections" id="sections"></div>
-
+ 
 <div class="chart-section section">
 <div class="section-header" onclick="toggleChart()">
 <span id="chartTitle"></span>
 </div>
 <div class="section-content">
-
+ 
 <div style="display:flex;gap:15px;margin-bottom:10px;">
 <span style="color:limegreen;">● Completed</span>
 <span style="color:red;">● Missed</span>
 <span style="color:gold;">● Late</span>
 </div>
-
+ 
 <div class="chart-container">
 <canvas id="chart"></canvas>
 </div>
-
+ 
 </div>
 </div>
-
+ 
 </div>
-
+ 
 <!-- REPORT PAGE -->
 <div id="reportsPage" class="page">
-
+ 
 <div class="report-layout">
-
+ 
   <div class="report-left">
-
+ 
     <h2 id="monthlyTitle"></h2>
-
+ 
     <div id="monthlyStatus" style="
       margin-bottom:15px;
       opacity:0.85;
       font-size:15px;
     "></div>
-
+ 
     <select id="monthSelect" style="
       width:100%;
       padding:12px;
       margin:10px 0;
     "></select>
-
+ 
     <div class="pie-chart-container">
       <canvas id="pieChart"></canvas>
     </div>
-
+ 
     <div style="margin-top:10px;">
       <span style="color:limegreen;">● Completed</span>
       <span style="color:red;">● Missed</span>
       <span style="color:gold;">● Late</span>
     </div>
-
+ 
   </div>
-
+ 
   <div class="report-right">
     <h1>Monthly Report:</h1>
-
+ 
     <div id="reportStats"></div>
   </div>
-
+ 
 </div>
 </div>
-
+ 
 <!-- SETTINGS -->
 <div id="settingsPage" class="page">
 <div class="setting-group">
@@ -458,32 +458,32 @@ body.light #textSizeSlider{
 <option value="light">☀️ Light</option>
 </select>
 </div>
-
+ 
 <div class="setting-group">
 <label id="textSizeLabel"></label>
-
+ 
 <select id="textSizeSelect">
 <option value="low">Small</option>
 <option value="medium">Medium</option>
 <option value="high">Large</option>
 </select>
-
+ 
 <div id="advancedTextToggle" style="font-size:13px;margin-top:6px;cursor:pointer;"></div>
-
+ 
 <div id="advancedTextPanel" style="display:none;margin-top:10px;">
 <div style="display:flex;align-items:center;gap:8px;">
 <span style="font-size:12px;">A</span>
 <input type="range" id="textSizeSlider" min="12" max="24" value="16">
 <span style="font-size:18px;">A</span>
 </div>
-
+ 
 <div id="textSizeValue" style="font-size:12px;margin-top:4px;">
 16px
 </div>
 </div>
-
+ 
 </div>
-
+ 
 <div class="setting-group">
 <label id="langLabel"></label>
 <select id="langSelect">
@@ -492,30 +492,18 @@ body.light #textSizeSlider{
 </select>
 </div>
 </div>
-
+ 
 </div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-const firebaseConfig = {
-  apiKey: "...",
-  authDomain: "...",
-  projectId: "...",
-  storageBucket: "...",
-  messagingSenderId: "...",
-  appId: "..."
-};
-
-const app = initializeApp(firebaseConfig);
-
-console.log("firebase connected");
+ 
+<script>
+console.log("App starting - Firebase removed for local development");
+ 
 let tasks=[];
 let chart,pieChart;
 let openSections={high:false,medium:false,low:false,chart:false};
 let currentLang=localStorage.getItem("lang")||"en";
 let textSize = localStorage.getItem("textSize") || "medium";
-
+ 
 /* LANGUAGE */
 const lang={
 en:{
@@ -551,7 +539,7 @@ textSize:"Kích thước chữ - 🔤",
 advanced:"Nâng cao"
 }
 };
-
+ 
 function applyLang(){
   let t=lang[currentLang];
   document.getElementById("title").textContent=t.title;
@@ -566,32 +554,33 @@ function applyLang(){
   document.getElementById("langLabel").textContent=t.lang;
   document.getElementById("advancedTextToggle").textContent = t.advanced;
   document.getElementById("textSizeLabel").textContent = t.textSize;
-
+ 
   document.getElementById("priorityInput").innerHTML=`
   <option value="high">🔴 HIGH</option>
   <option value="medium">🟡 MEDIUM</option>
   <option value="low">🟢 LOW</option>`;
 }
-  function applyTextSize(){
+ 
+function applyTextSize(){
   let sizeMap = {
     low: "14px",
     medium: "16px",
     high: "18px"
   };
-
+ 
   document.body.style.setProperty("--text-size", sizeMap[textSize]);
 }
-
+ 
 /* NAV */
 document.getElementById("navTasks").onclick=()=>switchPage("tasksPage");
 document.getElementById("navReports").onclick=()=>switchPage("reportsPage");
 document.getElementById("navSettings").onclick=()=>switchPage("settingsPage");
-
+ 
 function switchPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
-
+ 
 /* CHART */
 function initCharts(){
 chart=new Chart(document.getElementById("chart"),{
@@ -613,7 +602,7 @@ chart=new Chart(document.getElementById("chart"),{
     },
     plugins:{
       legend:{
-        display:false   // removes weird undefined legend
+        display:false
       },
       tooltip:{
         callbacks:{
@@ -650,18 +639,17 @@ options:{
     }
   }
 });
-
 }
-
+ 
 function updateChart(){
   if (!chart) return;
   let completed=0, missed=0, late=0;
   let now=new Date();
-
+ 
   tasks.forEach(t=>{
     let hasDeadline = t.deadline;
     let d = hasDeadline ? new Date(t.deadline) : null;
-
+ 
     if(t.done){
       if(hasDeadline && new Date(t.completedAt) > d){
         late++;
@@ -672,29 +660,29 @@ function updateChart(){
       missed++;
     }
   });
-
+ 
   chart.data.datasets[0].data=[completed, missed, late];
-
+ 
   chart.options.scales.y.max = tasks.length + 1;
-
+ 
   chart.update();
 }
-
+ 
 /* MONTHLY */
 function generateMonthly(){
 let months={};
-
+ 
 tasks.forEach(t=>{
 if(!t.deadline)return;
 let m=t.deadline.slice(0,7);
 if(!months[m])months[m]=[];
 months[m].push(t);
 });
-
+ 
 let select=document.getElementById("monthSelect");
 select.innerHTML="";
-
-Object.keys(months).forEach(m=>{
+ 
+Object.keys(months).sort().reverse().forEach(m=>{
 let opt=document.createElement("option");
 opt.value=m;
 opt.textContent=m;
@@ -704,12 +692,12 @@ select.appendChild(opt);
 if(!select.value) return;
   
 let [year, month] = select.value.split("-");
-
+ 
 const monthNames = [
   "January","February","March","April","May","June",
   "July","August","September","October","November","December"
 ];
-
+ 
 document.getElementById("monthlyTitle").textContent =
 `${monthNames[parseInt(month)-1]} ${year}`;
 let data=[0,0,0];
@@ -730,13 +718,11 @@ else if(data[2] >= data[0] && data[2] >= data[1]){
 else{
   statusText = "You did bad this month.";
 }
-
+ 
 document.getElementById("monthlyStatus").textContent = statusText;
 pieChart.data.datasets[0].data=data;
 pieChart.update();
-  pieChart.data.datasets[0].data = data;
-  pieChart.update();
-  document.getElementById("reportStats").innerHTML = `
+document.getElementById("reportStats").innerHTML = `
 Tasks Completed - ${data[0]}<br>
 Tasks Missed - ${data[1]}<br>
 Tasks Delayed - ${data[2]}
@@ -747,56 +733,55 @@ Tasks Delayed - ${data[2]}
 function getFilteredTasks(){
   let from = document.getElementById("fromDate").value;
   let to = document.getElementById("toDate").value;
-
+ 
   let fromDate = from ? new Date(from) : null;
   let toDate = to ? new Date(to) : null;
-
+ 
   return tasks.filter(t=>{
     if(!t.deadline) return false;
-
+ 
     let taskDate = new Date(t.deadline);
-
+ 
     if (fromDate && taskDate < fromDate) return false;
-
+ 
 if (toDate) {
   let end = new Date(toDate);
   end.setHours(23,59,59,999);
   if (taskDate > end) return false;
 }
-
+ 
     return true;
   });
 }
+ 
 function renderFilterPreview(){
   let container = document.getElementById("filterResults");
   container.innerHTML = "";
-
-  // 🔥 BUG 1 FIX (don’t show if no dates)
+ 
   let from = document.getElementById("fromDate").value;
   let to = document.getElementById("toDate").value;
-
+ 
   if(!from && !to){
     container.innerHTML = "";
     return;
   }
-
-
+ 
   let filtered = getFilteredTasks();
-
+ 
   filtered.forEach(t=>{
     let realTask = tasks.find(task => task.createdAt === t.createdAt);
-
+ 
     let div = document.createElement("div");
-
+ 
     div.style.background = "#2a2a2a";
     div.style.padding = "12px";
     div.style.borderRadius = "12px";
     div.style.marginBottom = "8px";
-
+ 
     div.innerHTML = `
       <div style="display:flex;justify-content:space-between;">
         <span>${t.text}</span>
-
+ 
         <span style="
           background:${realTask && realTask.done ? "limegreen" : "#555"};
           padding:3px 8px;
@@ -806,26 +791,26 @@ function renderFilterPreview(){
           ${realTask && realTask.done ? "DONE" : "TODO"}
         </span>
       </div>
-
+ 
       <div style="margin-top:5px;font-size:13px;">
         📅 ${t.deadline}
       </div>
     `;
-
+ 
     container.appendChild(div);
   });
 }
-
+ 
 /* RENDER */
 function render(){
 let sections=document.getElementById("sections");
 sections.innerHTML="";
-
+ 
 let filtered = tasks;
 let groups={high:[],medium:[],low:[]};
-
+ 
 filtered.forEach(t=>groups[t.priority].push({...t,index:tasks.indexOf(t)}));
-
+ 
 Object.keys(groups).forEach(level=>{
   console.log(level, groups[level].length);
 let list=groups[level];
@@ -833,29 +818,29 @@ let list=groups[level];
 list.sort((a, b) => {
   // 1. incomplete first
   if (a.done !== b.done) return a.done - b.done;
-
+ 
   // 2. tasks WITH deadlines come first
   if (!a.deadline && b.deadline) return 1;
   if (a.deadline && !b.deadline) return -1;
-
+ 
   // 3. sort by deadline
   if (a.deadline && b.deadline) {
     return new Date(a.deadline) - new Date(b.deadline);
   }
-
+ 
   return 0;
 });
 let done=list.filter(t=>t.done).length;
-
+ 
 let section=document.createElement("div");
 section.className=`section ${level} ${openSections[level]?"open":""}`;
-
+ 
 let percent = list.length ? (done / list.length) * 100 : 0;
-
+ 
 section.innerHTML=`
 <div class="section-header" onclick="toggleSection('${level}')">
 <span>${level.toUpperCase()}</span>
-
+ 
 <div style="
   flex:1;
   margin:0 10px;
@@ -871,27 +856,27 @@ section.innerHTML=`
     transition:0.3s;
   "></div>
 </div>
-
+ 
 <span>${done}/${list.length}</span>
 </div>
-
+ 
 <div class="section-content"><ul></ul></div>`;
-
+ 
 sections.appendChild(section);
-
+ 
 let ul=section.querySelector("ul");
-
+ 
 list.forEach(t=>{
 let li=document.createElement("li");
 if(t.done) li.classList.add("done");
-
+ 
 li.innerHTML=`
 <div class="task-top">
 <input type="checkbox" ${t.done?"checked":""} onclick="toggle(${t.index})">
 <textarea onchange="edit(${t.index},this.value)">${t.text}</textarea>
 <button class="delete-btn" onclick="del(${t.index})">❌</button>
 </div>
-
+ 
 <div class="task-bottom">
 <input type="date" value="${t.deadline||''}" onchange="updateDate(${t.index},this.value)">
 <select onchange="updatePriority(${t.index},this.value)">
@@ -900,20 +885,20 @@ li.innerHTML=`
 <option value="low" ${t.priority === "low" ? "selected" : ""}>🟢 LOW</option>
 </select>
 </div>
-
+ 
 <div class="date-text">
 ${t.deadline?"📅 "+t.deadline:""}
 ${t.completedAt?" | ✅ "+t.completedAt.split("T")[0]:""}
 <br>
 ${t.createdAt?lang[currentLang].created+": "+t.createdAt.split("T")[0]:""}
 </div>`;
-
+ 
 ul.appendChild(li);
 });
 });
-
+ 
 document.querySelector(".chart-section").classList.toggle("open",openSections.chart);
-
+ 
 if (chart && chart.data) updateChart();
 updateChart();
 generateMonthly();
@@ -921,37 +906,37 @@ applyLang();
   
 renderFilterPreview();
 }
-
+ 
 /* ACTIONS */
 function toggle(i){
   tasks[i].done = !tasks[i].done;
-
+ 
   tasks[i].completedAt = tasks[i].done
     ? new Date().toISOString()
     : null;
-
+ 
   save();
-
+ 
   render();
-
-  // ✅ GUARANTEED chart update AFTER DOM updates
+ 
   requestAnimationFrame(() => {
     updateChart();
   });
 }
+ 
 function del(i){tasks.splice(i,1);save();render();}
 function edit(i,v){tasks[i].text=v;save();}
 function updateDate(i,v){tasks[i].deadline=v;save();render();}
 function updatePriority(i,v){tasks[i].priority=v;save();render();}
-
+ 
 /* ADD */
 document.getElementById("addTaskBtn").onclick=()=>{
 let t=document.getElementById("taskInput");
 let d=document.getElementById("deadlineInput");
 let p=document.getElementById("priorityInput");
-
+ 
 if(!t.value.trim())return;
-
+ 
 tasks.push({
 text:t.value,
 deadline:d.value,
@@ -960,28 +945,29 @@ done:false,
 completedAt:null,
 createdAt:new Date().toISOString()
 });
-
+ 
 t.value="";d.value="";
 save();
 render();
 updateChart();
 };
-
+ 
 /* TOGGLE */
 function toggleSection(level){
 openSections[level]=!openSections[level];
 render();
 }
+ 
 function toggleChart(){
 openSections.chart=!openSections.chart;
 render();
 }
-
+ 
 /* THEME */
 document.getElementById("themeSelect").onchange=e=>{
 document.body.classList.toggle("light",e.target.value==="light");
 };
-
+ 
 /* LANGUAGE */
 document.getElementById("langSelect").onchange=e=>{
 currentLang=e.target.value;
@@ -991,7 +977,7 @@ render();
 };
   
 const textSizeEl = document.getElementById("textSizeSelect");
-
+ 
 if (textSizeEl) {
   textSizeEl.onchange = e => {
     textSize = e.target.value;
@@ -999,21 +985,21 @@ if (textSizeEl) {
     applyTextSize();
   };
 }
+ 
 /* STORAGE */
 function save(){
   localStorage.setItem("tasks_v2", JSON.stringify(tasks));
 }
-
+ 
 function load(){
   let data = localStorage.getItem("tasks_v2");
-
+ 
   if(!data){
     data = localStorage.getItem("tasks");
   }
-
+ 
   tasks = JSON.parse(data) || [];
-
-  // 🔥 FIX OLD TASKS (migration)
+ 
   tasks = tasks.map(t => ({
     text: t.text || "",
     deadline: t.deadline || "",
@@ -1023,52 +1009,51 @@ function load(){
     createdAt: t.createdAt || new Date().toISOString()
   }));
 }
-
+ 
 load();
 try {
   initCharts();
 } catch (e) {
-  console.log("chart failed");
+  console.log("chart failed", e);
 }
-
+ 
 applyLang();
 applyTextSize();
 render();
+ 
 ["fromDate","toDate"].forEach(id=>{
   document.getElementById(id).addEventListener("input", render);
 });
-
+ 
 document.getElementById("textSizeSelect").value = textSize;
-
-console.log("app reached splash removal");
+ 
 // 🔥 ADVANCED TEXT SIZE
 const advToggle = document.getElementById("advancedTextToggle");
 const advPanel = document.getElementById("advancedTextPanel");
 const slider = document.getElementById("textSizeSlider");
 const valueText = document.getElementById("textSizeValue");
-
-// toggle panel
+ 
 advToggle.onclick = () => {
   advPanel.style.display = advPanel.style.display === "none" ? "block" : "none";
 };
-
-// load saved px size
+ 
 const savedPx = localStorage.getItem("textSizePx");
 if(savedPx){
   document.body.style.setProperty("--text-size", savedPx + "px");
   slider.value = savedPx;
   valueText.textContent = savedPx + "px";
 }
-
-// live update
+ 
 slider.oninput = () => {
   let size = slider.value;
-
+ 
   document.body.style.setProperty("--text-size", size + "px");
   valueText.textContent = size + "px";
-
+ 
   localStorage.setItem("textSizePx", size);
 };
+ 
+console.log("App fully loaded");
 </script>
 </body>
 </html>
