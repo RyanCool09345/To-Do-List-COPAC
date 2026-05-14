@@ -281,51 +281,108 @@ body.light .task-bottom select{
 }
 body.light .chart-section{background:#e0e0e0;}
 .chart-container{height:250px;}
-.pie-chart-container{
-  width:320px;
-  height:320px;
-  margin:20px auto;
+.pie-chart-shell{
   position:relative;
+  width:100%;
+  max-width:400px;
+  margin:8px auto 0;
+  aspect-ratio:1;
+  min-height:280px;
+}
+
+.pie-chart-shell canvas{
+  display:block;
+  width:100% !important;
+  height:100% !important;
 }
 
 .report-layout{
   display:flex;
-  align-items:flex-start;
-  gap:40px;
-  margin-top:30px;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(24px,5vw,64px);
+  margin-top:24px;
   width:100%;
   overflow-x:hidden;
 }
 
 .report-left{
-  flex:1 1 320px;
-  max-width:420px;
+  flex:1 1 340px;
+  max-width:460px;
   min-width:0;
+}
+
+.report-left-inner{
+  text-align:center;
+}
+
+#monthlyTitle{
+  font-family:'Fredoka',sans-serif;
+  font-size:clamp(28px,4vw,40px);
+  font-weight:700;
+  margin:0 0 8px;
+  line-height:1.15;
+}
+
+.monthly-status{
+  margin:0 auto 16px;
+  opacity:0.9;
+  font-size:calc(var(--text-size) + 1px);
+  max-width:28rem;
+}
+
+.month-select{
+  width:100%;
+  max-width:280px;
+  margin:0 auto 20px;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:#2a2a2a;
+  color:inherit;
+  font-size:calc(var(--text-size));
+}
+
+body.light .month-select{
+  border:1px solid rgba(0,0,0,0.15);
+  background:#fff;
 }
 
 .report-right{
-  flex:1;
+  flex:1 1 280px;
   min-width:0;
-
   display:flex;
   flex-direction:column;
-  justify-content:flex-start;
-
-  padding-top:0;
+  justify-content:center;
+  padding:8px 0 8px 12px;
 }
 
-.report-right h1{
-  font-family:'Fredoka';
-  font-size:clamp(36px, 8vw, 64px);
-  margin-top:0;
-  margin-bottom:20px;
+.report-main-heading{
+  font-family:'Fredoka',sans-serif;
+  font-size:clamp(32px,5vw,52px);
+  font-weight:800;
+  margin:0 0 20px;
+  line-height:1.1;
+  letter-spacing:-0.02em;
 }
 
 #reportStats{
-  font-size:clamp(20px, 5vw, 30px);
-  line-height:1.6;
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(18px,2.8vw,28px);
+  font-weight:500;
+  line-height:1.75;
+  margin:0;
+}
 
-  margin-top:-20px;
+@media(max-width:820px){
+  .report-layout{
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .report-right{
+    padding-left:0;
+    padding-top:16px;
+  }
 }
 #advancedTextToggle:hover{
   opacity:1;
@@ -446,36 +503,18 @@ body.light #textSizeSlider{
 <div class="report-layout">
 
   <div class="report-left">
-
-    <h2 id="monthlyTitle"></h2>
-
-    <div id="monthlyStatus" style="
-      margin-bottom:15px;
-      opacity:0.85;
-      font-size:15px;
-    "></div>
-
-    <select id="monthSelect" style="
-      width:100%;
-      padding:12px;
-      margin:10px 0;
-    "></select>
-
-    <div class="pie-chart-container">
-      <canvas id="pieChart"></canvas>
+    <div class="report-left-inner">
+      <h2 id="monthlyTitle"></h2>
+      <p id="monthlyStatus" class="monthly-status"></p>
+      <select id="monthSelect" class="month-select"></select>
+      <div class="pie-chart-shell">
+        <canvas id="pieChart"></canvas>
+      </div>
     </div>
-
-    <div style="margin-top:10px;">
-      <span style="color:limegreen;">● Completed</span>
-      <span style="color:red;">● Missed</span>
-      <span style="color:gold;">● Late</span>
-    </div>
-
   </div>
 
   <div class="report-right">
-    <h1>Monthly Report:</h1>
-
+    <h1 id="monthlyReportHeading" class="report-main-heading"></h1>
     <div id="reportStats"></div>
   </div>
 
@@ -549,6 +588,16 @@ enter:"Enter task",
 filter:"📅 Filter Tasks",
 chart:"📊 Weekly Progress",
 monthly:"📊 Monthly Report",
+monthlyReportHeading:"Monthly Report:",
+statCompleted:"Tasks Completed - ",
+statMissed:"Tasks Missed - ",
+statDelayed:"Tasks Delayed - ",
+statusGood:"You did well this month.",
+statusOkay:"You did okay this month.",
+statusBad:"You did bad this month.",
+pieCompleted:"Completed",
+pieMissed:"Missed",
+pieDelayed:"Delayed",
 theme:"Theme - 🌗",
 lang:"Language - 🌏",
 created:"Created on",
@@ -565,6 +614,16 @@ enter:"Nhập nhiệm vụ",
 filter:"📅 Lọc nhiệm vụ",
 chart:"📊 Tiến độ tuần",
 monthly:"📊 Báo cáo tháng",
+monthlyReportHeading:"Báo cáo tháng:",
+statCompleted:"Hoàn thành - ",
+statMissed:"Trễ hạn (missed) - ",
+statDelayed:"Hoàn thành trễ - ",
+statusGood:"Bạn làm tốt trong tháng này.",
+statusOkay:"Bạn làm tạm ổn trong tháng này.",
+statusBad:"Bạn cần cố gắng hơn trong tháng này.",
+pieCompleted:"Hoàn thành",
+pieMissed:"Trễ hạn",
+pieDelayed:"Trễ nộp",
 theme:"Giao diện - 🌗",
 lang:"Ngôn ngữ - 🌏",
 created:"Tạo lúc",
@@ -587,11 +646,15 @@ function applyLang(){
   document.getElementById("langLabel").textContent=t.lang;
   document.getElementById("advancedTextToggle").textContent = t.advanced;
   document.getElementById("textSizeLabel").textContent = t.textSize;
+  document.getElementById("monthlyReportHeading").textContent = t.monthlyReportHeading;
 
   document.getElementById("priorityInput").innerHTML=`
   <option value="high">🔴 HIGH</option>
   <option value="medium">🟡 MEDIUM</option>
   <option value="low">🟢 LOW</option>`;
+  if(typeof pieChart!=="undefined"&&pieChart){
+    try{generateMonthly();}catch(e){}
+  }
 }
 
 function applyTextSize(){
@@ -615,7 +678,56 @@ document.getElementById(id).classList.add("active");
 }
 
 /* CHART */
+let monthPieLabelPluginRegistered=false;
+function ensureMonthPieLabelPlugin(){
+  if(monthPieLabelPluginRegistered)return;
+  monthPieLabelPluginRegistered=true;
+  Chart.register({
+    id:"monthPieOutsideLabels",
+    afterDatasetsDraw(chart){
+      if(chart.canvas.id!=="pieChart")return;
+      const meta=chart.getDatasetMeta(0);
+      if(!meta||!meta.data||meta.data.length===0)return;
+      const values=chart.data.datasets[0].data;
+      const sum=values.reduce((a,b)=>a+Number(b||0),0);
+      if(sum===0)return;
+      const L=lang[currentLang];
+      const short=[L.pieCompleted,L.pieMissed,L.pieDelayed];
+      const ctx=chart.ctx;
+      const isLight=document.body.classList.contains("light");
+      ctx.save();
+      ctx.font="600 14px Montserrat, system-ui, sans-serif";
+      ctx.textAlign="center";
+      ctx.textBaseline="middle";
+      meta.data.forEach((arc,i)=>{
+        const v=Number(values[i]||0);
+        if(v===0)return;
+        let x,y,startAngle,endAngle,outerRadius;
+        if(typeof arc.getProps==="function"){
+          const p=arc.getProps(["x","y","startAngle","endAngle","outerRadius"],true);
+          x=p.x;y=p.y;startAngle=p.startAngle;endAngle=p.endAngle;outerRadius=p.outerRadius;
+        }else{
+          ({x,y,startAngle,endAngle,outerRadius}=arc);
+        }
+        if(outerRadius==null||x==null)return;
+        const mid=(startAngle+endAngle)/2;
+        const dist=outerRadius+Math.max(24,outerRadius*0.14);
+        const lx=x+Math.cos(mid)*dist;
+        const ly=y+Math.sin(mid)*dist;
+        const line=`${short[i]} ${v}`;
+        ctx.strokeStyle=isLight?"rgba(255,255,255,0.9)":"rgba(0,0,0,0.55)";
+        ctx.lineWidth=isLight?2.5:3.5;
+        ctx.strokeText(line,lx,ly);
+        ctx.fillStyle=isLight?"#111":"#fff";
+        ctx.fillText(line,lx,ly);
+      });
+      ctx.restore();
+    }
+  });
+}
+
 function initCharts(){
+ensureMonthPieLabelPlugin();
 chart=new Chart(document.getElementById("chart"),{
   type:"bar",
   data:{
@@ -657,14 +769,17 @@ pieChart = new Chart(document.getElementById("pieChart"),{
     labels:["Completed","Missed","Delayed"],
     datasets:[{
       data:[0,0,0],
-      backgroundColor:["#7BC96F","#FF2D2D","#EFD256"],
-      borderWidth:0
+      backgroundColor:["#76d275","#ff3b30","#ffda5c"],
+      borderColor:"#121212",
+      borderWidth:3,
+      hoverOffset:6
     }]
   },
 options:{
   responsive:true,
   maintainAspectRatio:false,
-  cutout:"45%",
+  cutout:"58%",
+  layout:{padding:{top:28,bottom:28,left:36,right:36}},
   plugins:{
       legend:{
         display:false
@@ -743,22 +858,24 @@ else data[0]++;
 }else if(d<new Date())data[1]++;
 });
 if(data[0] >= data[1] && data[0] >= data[2]){
-  statusText = "You did well this month.";
+  statusText = lang[currentLang].statusGood;
 }
 else if(data[2] >= data[0] && data[2] >= data[1]){
-  statusText = "You did okay this month.";
+  statusText = lang[currentLang].statusOkay;
 }
 else{
-  statusText = "You did bad this month.";
+  statusText = lang[currentLang].statusBad;
 }
 
 document.getElementById("monthlyStatus").textContent = statusText;
 pieChart.data.datasets[0].data=data;
+pieChart.data.datasets[0].borderColor=document.body.classList.contains("light")?"#e8e8e8":"#121212";
 pieChart.update();
+const R=lang[currentLang];
 document.getElementById("reportStats").innerHTML = `
-Tasks Completed - ${data[0]}<br>
-Tasks Missed - ${data[1]}<br>
-Tasks Delayed - ${data[2]}
+${R.statCompleted}${data[0]}<br>
+${R.statMissed}${data[1]}<br>
+${R.statDelayed}${data[2]}
 `;
 }
 
@@ -1023,6 +1140,11 @@ render();
 document.getElementById("themeSelect").onchange=e=>{
   localStorage.setItem("theme", e.target.value);
   document.body.classList.toggle("light",e.target.value==="light");
+  if(typeof pieChart!=="undefined"&&pieChart&&pieChart.data&&pieChart.data.datasets[0]){
+    pieChart.data.datasets[0].borderColor=e.target.value==="light"?"#e8e8e8":"#121212";
+    pieChart.update();
+  }
+  renderFilterPreview();
 };
 
 /* LANGUAGE */
