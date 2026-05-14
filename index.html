@@ -85,10 +85,11 @@ body.light .filter-section{background:#e0e0e0;}
 
 /* SECTIONS */
 .sections{
-  display:flex;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(280px,1fr));
   gap:15px;
   margin-top:10px;
-  align-items:flex-start;
+  align-items:start;
 }
 .section{
   flex:1;
@@ -151,14 +152,41 @@ li.done textarea{
   opacity:0.6;
 }
 
-.task-top{display:flex;gap:10px;align-items:center;}
+.task-top{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  width:100%;
+}
+
+.task-top textarea{
+  min-width:0;
+}
 textarea{
   flex:1;
   font-size:var(--text-size);
 }
 
-.task-bottom{display:flex;gap:8px;margin-top:6px;}
-.task-bottom input,.task-bottom select{flex:1;}
+.task-bottom{
+  display:flex;
+  gap:8px;
+  margin-top:6px;
+  width:100%;
+}
+
+.task-bottom input,
+.task-bottom select{
+  flex:1;
+  min-width:0;
+}
+  li{
+  overflow:hidden;
+}
+  textarea{
+  width:100%;
+  resize:vertical;
+  overflow-x:hidden;
+}
 
 .delete-btn{
   background:red;
@@ -292,6 +320,11 @@ body.light #textSizeSlider{
   background: #f4f4f4;
   border: 1px solid #e0e0e0;
   box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+  @media(max-width:900px){
+  .sections{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
